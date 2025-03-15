@@ -74,4 +74,15 @@ public class Pedido {
 		this.detallePedido = detallePedido;
 	}	
 	
+	@Override
+	public String toString() {
+		return "Pedido{" +
+	            "pedido_id='" + pedido_id + '\'' +
+	            ", fecha='" + fecha + '\'' +
+	            ", total='" + total + '\'' +
+	            ", usuario=" + usuario +
+	            ", detallePedido=" + detallePedido +
+	            '}';
+	}
+	
 }

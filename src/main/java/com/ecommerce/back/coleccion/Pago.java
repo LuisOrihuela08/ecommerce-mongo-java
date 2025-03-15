@@ -71,5 +71,14 @@ public class Pago {
 		this.estado = estado;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Pago{" +
+	            "pago_id='" + pago_id + '\'' +
+	            ", metodo_pago='" + metodo_pago + '\'' +
+	            ", monto='" + monto + '\'' +
+	            ", pedido=" + pedido +
+	            ", estado=" + estado +
+	            '}';
+	}
 }
