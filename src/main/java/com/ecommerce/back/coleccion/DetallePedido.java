@@ -56,5 +56,15 @@ public class DetallePedido {
 		this.producto = producto;
 	}
 	
+	@Override
+	public String toString() {
+		return "DetallePedido{" +
+	            "detalle_pedido_id='" + detalle_pedido_id + '\'' +
+	            ", cantidad='" + cantidad + '\'' +
+	            ", precio_unitario='" + precio_unitario + '\'' +
+	            ", subtotal=" + subtotal +
+	            ", producto=" + producto +
+	            '}';
+	}
 	
 }

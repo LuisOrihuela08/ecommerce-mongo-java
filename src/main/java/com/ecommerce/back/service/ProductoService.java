@@ -41,4 +41,16 @@ public class ProductoService {
 		
 		return productoRepositorio.save(producto);
 	}
+	
+	public Producto actualizarProducto(Producto producto) {
+		return productoRepositorio.save(producto);
+	}
+	
+	public Optional<Producto> getProductoBYId(String producto_id){
+		return productoRepositorio.findById(producto_id);
+	}
+	
+	public void deleteProducto(String producto_id) {
+		productoRepositorio.deleteById(producto_id);
+	}
 }

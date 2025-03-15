@@ -41,5 +41,13 @@ public class Usuario_Rol {
 		this.rol = rol;
 	}
 	
+	@Override
+	public String toString() {
+		return "UsuarioRol{" +
+	            "usuario_rol_id='" + usuario_rol_id + '\'' +
+	            ", usuario='" + usuario + '\'' +
+	            ", rol='" + rol  +
+	            '}';
+	}
 	
 }
