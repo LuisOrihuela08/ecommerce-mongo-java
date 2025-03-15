@@ -17,7 +17,19 @@ public class Pago {
 	
 	@DBRef
 	private Estado estado;
+	
+	public Pago() {
+		super();
+	}
 
+	public Pago(String pago_id, String metodo_pago, double monto, Pedido pedido, Estado estado) {
+		super();
+		this.pago_id = pago_id;
+		this.metodo_pago = metodo_pago;
+		this.monto = monto;
+		this.pedido = pedido;
+		this.estado = estado;
+	}
 
 	public String getPago_id() {
 		return pago_id;
