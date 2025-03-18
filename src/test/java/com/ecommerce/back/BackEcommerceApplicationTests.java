@@ -17,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ecommerce.back.coleccion.Categoria;
 import com.ecommerce.back.coleccion.Producto;
-import com.ecommerce.back.repositorio.CategoriRepositorio;
 import com.ecommerce.back.repositorio.ProductoRepositorio;
 import com.ecommerce.back.service.ProductoService;
 
@@ -32,6 +31,7 @@ class BackEcommerceApplicationTests {
 	}
 	*/
 	
+	//Comentario de prueba
 	@Mock
 	private ProductoRepositorio productoRepositorio;
 	
