@@ -13,11 +13,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ecommerce.back.coleccion.Categoria;
 import com.ecommerce.back.coleccion.Producto;
-import com.ecommerce.back.repositorio.CategoriRepositorio;
 import com.ecommerce.back.repositorio.ProductoRepositorio;
 import com.ecommerce.back.service.ProductoService;
 
