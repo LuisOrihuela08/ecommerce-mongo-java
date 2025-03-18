@@ -16,6 +16,21 @@ public class Producto {
 	
 	@DBRef
 	private Categoria categoria;
+	
+	public Producto() {
+		super();
+	}
+
+	public Producto(String producto_id, String nombre, String descripcion, double precio, int stock,
+			Categoria categoria) {
+		super();
+		this.producto_id = producto_id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.stock = stock;
+		this.categoria = categoria;
+	}
 
 	public String getProducto_id() {
 		return producto_id;
