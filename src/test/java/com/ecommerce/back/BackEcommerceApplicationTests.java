@@ -30,6 +30,7 @@ class BackEcommerceApplicationTests {
 	}
 	*/
 	
+	//Comentario de prueba
 	@Mock
 	private ProductoRepositorio productoRepositorio;
 	
