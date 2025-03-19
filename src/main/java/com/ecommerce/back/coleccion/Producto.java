@@ -88,6 +88,7 @@ public class Producto {
 	            ", descripcion='" + descripcion + '\'' +
 	            ", precio=" + precio +
 	            ", stock=" + stock +
+	            ", categoria=" + categoria +
 	            '}';
 	}
 }

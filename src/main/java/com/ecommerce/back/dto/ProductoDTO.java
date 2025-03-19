@@ -19,6 +19,9 @@ public class ProductoDTO {
 		this.stock = stock;
 		this.categoria_id = categoria_id;
 	}
+	
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
