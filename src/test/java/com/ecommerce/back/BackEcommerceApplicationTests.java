@@ -110,6 +110,32 @@ class BackEcommerceApplicationTests {
 			fail("Se produjo un error en la prueba: " + e.getMessage());
 		}
 	}
+	
+	//Test para buscar un producto por id
+	@Test
+	public void testBuscarProductoPorId() {
+		
+		try {
+			
+			Categoria categoria = new Categoria("1", "Calzado");
+			Producto producto = new Producto("1", "Adidas Courtmaster", "Zapatillas blancas", 160.0, 10, categoria);
+			
+			Mockito.when(productoRepositorio.findById("1")).thenReturn(Optional.of(producto));
+			
+			Optional<Producto> productoOptional = productoService.getProductoBYId("1");
+			
+			logger.info("TEST BUSCAR PRODUCTO POR ID OK");
+			logger.info("Producto encontrado: {}", productoOptional);
+			
+		    assertTrue(productoOptional.isPresent());
+		    assertEquals("1", productoOptional.get().getProducto_id());
+	        assertEquals("Adidas Courtmaster", productoOptional.get().getNombre());
+			
+			
+		} catch (Exception e) {
+			logger.error("ERROR EN EL TEST DE BUSCAR PRODUCTO POR ID: {}", e.getMessage(), e);
+		}
+	}
 
 	// Test para eliminar un producto
 	@Test
