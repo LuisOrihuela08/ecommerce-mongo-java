@@ -23,7 +23,7 @@ Para poder manejar las relaciones entre las tablas, en MongoDB se utilizó las r
 
 ```sh
 docker pull sonarqube
-docker run 
+docker run -d --name sonarqube -p 9000:9000 -p 9002:9002 sonarqube
 ```
 
 ## Dockerfile  
@@ -69,3 +69,17 @@ RUN usermod -aG docker jenkins
 
 # Switch back to Jenkins user
 USER jenkins
+```
+## Crear la imagen y conenedor
+
+```sh
+docker build -t jenkins .
+docker run -d -p 8080:8080 -p 5000:5000 --name jenkins jenkins
+```
+## Crear un network para que estos dos contenedores se comuniquen
+
+```sh
+docker network create jenkins-sonarqube
+docker network connect jenkins-sonarqube jenkins
+docker network connect jenkins-sonarqube sonarqube
+```
