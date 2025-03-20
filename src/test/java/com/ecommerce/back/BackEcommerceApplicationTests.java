@@ -56,7 +56,7 @@ class BackEcommerceApplicationTests {
 
 			List<Producto> resultListProduct = productoService.listAllProductos();
 
-			logger.info("Lista de productos: {}", resultListProduct);
+			logger.info("TEST LISTAR PRODUCTOS OK: {}", resultListProduct);
 
 			Mockito.verify(productoRepositorio, Mockito.times(1)).findAll();
 
@@ -96,7 +96,7 @@ class BackEcommerceApplicationTests {
 
 			Producto productoNuevo = productoService.saveProducto(productoDto);
 
-			logger.info("Producto guardado con exito: {}", productoNuevo);
+			logger.info("TEST GUARDAR PRODUCTO OK: {}", productoNuevo);
 
 			assertNotNull(productoNuevo);
 			assertEquals("1", productoNuevo.getProducto_id());
@@ -107,6 +107,46 @@ class BackEcommerceApplicationTests {
 
 		} catch (Exception e) {
 			logger.error("ERROR AL CREAR PRODUCTO TEST: {}", e.getMessage(), e);
+			fail("Se produjo un error en la prueba: " + e.getMessage());
+		}
+	}
+	
+	//Test para actualizar un producto
+	@Test
+	public void testActualizarProducto() {
+		
+		try {
+			
+			Categoria categoria = new Categoria("1", "Tecnologia");
+			Producto productoExistente = new Producto("1", "Laptop", "Laptop de 3g", 1600.0, 10, categoria);
+			
+			
+			
+			ProductoDTO productoDto = new ProductoDTO();
+			productoDto.setNombre("Laptop");
+			productoDto.setDescripcion("Laptop de 11g");
+			productoDto.setPrecio(1600.0);
+			productoDto.setStock(10);
+			productoDto.setCategoria_id("1");
+			
+			Producto productoActualizado = new Producto();
+			productoActualizado.setProducto_id("1");
+			productoActualizado.setNombre(productoDto.getNombre());
+			productoActualizado.setDescripcion(productoDto.getDescripcion());
+			productoActualizado.setPrecio(productoDto.getPrecio());
+			productoActualizado.setStock(productoDto.getStock());
+			productoActualizado.setCategoria(categoria);
+			
+			
+			Mockito.when(productoRepositorio.save(Mockito.any(Producto.class))).thenReturn(productoActualizado);
+			
+			productoService.actualizarProducto(productoActualizado);
+			
+			logger.info("TEST DE ACTUALIZAR PRODUCTO OK");
+			logger.info("Producto Actualizado: {}", productoActualizado);	
+			
+		} catch (Exception e) {
+			logger.error("ERROR EN EL TEST DE ACTUALIZAR PRODUCTO {}", e.getMessage(), e);
 			fail("Se produjo un error en la prueba: " + e.getMessage());
 		}
 	}
