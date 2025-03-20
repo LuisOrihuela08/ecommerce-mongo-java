@@ -127,4 +127,25 @@ public class ProductoController {
 		
 	}
 	
+	//Buscar por nombre
+	@GetMapping("/find-nombre/{nombre}")
+	public ResponseEntity<?> getProductoByNombre(@PathVariable ("nombre") String nombre){
+		
+		try {
+			
+			Optional<Producto> productoEncontrado = productoService.getProductoByNombre(nombre);
+			
+			if (productoEncontrado.isEmpty()) {
+				throw new RuntimeException("Producto no encontrado");
+			}
+			
+			logger.info("Producto encontrado OK: {}", productoEncontrado);
+			return new ResponseEntity<>(productoEncontrado, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			logger.error("ERROR AL BUSCAR EL PRODUCTO POR NOMBRE", e);
+			return new ResponseEntity<>(Map.of("error", "Error al buscar el producto por nombre", "detalle", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 }

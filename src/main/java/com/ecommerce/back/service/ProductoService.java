@@ -53,4 +53,9 @@ public class ProductoService {
 	public void deleteProducto(String producto_id) {
 		productoRepositorio.deleteById(producto_id);
 	}
+	
+	//Buscar producto por nombre
+	public Optional<Producto> getProductoByNombre(String nombre) {
+		return productoRepositorio.findByNombre(nombre);
+	}
 }
