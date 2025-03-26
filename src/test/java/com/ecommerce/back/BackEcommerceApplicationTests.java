@@ -48,20 +48,42 @@ class BackEcommerceApplicationTests {
 		try {
 
 			Categoria categoria = new Categoria("1", "Calzado");
-			Producto producto = new Producto("1", "Adidas Courtmaster", "Zapatillas blancas", 160.0, 10, categoria);
+			Producto producto1 = new Producto("1", "Adidas Courtmaster", "Zapatillas blancas", 160.0, 10, categoria);
+			Producto producto2 = new Producto("2", "Nike Blazer", "Zapatillas caña alta", 280.0, 10, categoria);
 
-			List<Producto> listProducto = Arrays.asList(producto);
+			List<Producto> listProducto = Arrays.asList(producto1, producto2);
 
 			Mockito.when(productoRepositorio.findAll()).thenReturn(listProducto);
 
 			List<Producto> resultListProduct = productoService.listAllProductos();
 
 			logger.info("TEST LISTAR PRODUCTOS OK: {}", resultListProduct);
+			
+			//Validando
+			assertNotNull(resultListProduct, "La lista de productos no debería ser nula");
+            assertEquals(2, resultListProduct.size(), "El tamaño de la lista debería ser 2");
+            
+            Producto resultadoProducto1 = resultListProduct.get(0);
+            assertEquals("1", resultadoProducto1.getProducto_id(), "El id del producto1 no coincide");
+            assertEquals("Adidas Courtmaster", resultadoProducto1.getNombre(), "El nombre del producto1 no coincide");
+            assertEquals("Zapatillas blancas", resultadoProducto1.getDescripcion(), "La descripción del producto1 no coincide");
+            assertEquals(160.0, resultadoProducto1.getPrecio(), "El precio del producto1 no coincide");
+            assertEquals(10, resultadoProducto1.getStock(), "El stock del producto1 no coincide");
+            assertEquals("Calzado", resultadoProducto1.getCategoria().getNombre(), "El nombre de la categoría no coincide");
+            
+            Producto resultadoProducto2 = resultListProduct.get(1);
+            assertEquals("2", resultadoProducto2.getProducto_id(), "El id del producto2 no coincide");
+            assertEquals("Adidas Courtmaster", resultadoProducto1.getNombre(), "El nombre del producto2 no coincide");
+            assertEquals("Zapatillas blancas", resultadoProducto1.getDescripcion(), "La descripción del producto2 no coincide");
+            assertEquals(160.0, resultadoProducto1.getPrecio(), "El precio del producto2 no coincide");
+            assertEquals(10, resultadoProducto1.getStock(), "El stock del producto2 no coincide");
+            assertEquals("Calzado", resultadoProducto1.getCategoria().getNombre(), "El nombre de la categoría no coincide");
 
 			Mockito.verify(productoRepositorio, Mockito.times(1)).findAll();
 
 		} catch (Exception e) {
 			logger.error("ERROR EN EL TEST DE LISTAR PRODUCTOS{}", e.getMessage(), e);
+			fail("Se produjo un una excepción inesperada en el test: " + e.getMessage());
 		}
 	}
 
